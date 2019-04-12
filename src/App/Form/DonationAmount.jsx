@@ -3,28 +3,24 @@ import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
 
 class DonationAmount extends Component {
-  render() {
-    const options = [
-      {
-        key: 'five_eos',
-        value: 5,
-        text: '5 EOS'
-      },
-      {
-        key: 'ten_eos',
-        value: 10,
-        text: '10 EOS'
-      }
-    ];
+  onChange(e) {
+    const donationAmount = e.target.value;
 
+    if (donationAmount.test(/^(\d*\.)?\d+$/)) {
+      this.props.onStateChange({ donationAmount })
+    } else {
+      this.props.onStateChange({ error: 'The donation amount, must be a decimal number with, eg: "1.0000"' });
+    }
+  };
+  render() {
     return (
-      <Form.Dropdown
-        defaultValue={5}
-        fluid
-        label="Donation Amount"
-        options={options}
-        selection
-      />
+      <React.Fragment>
+        <Form.Input
+          fluid
+          label="Enter a Donation Amount"
+          onChange={this.onChange}
+        />
+      </React.Fragment>
     );
   }
 }
