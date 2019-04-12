@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Form } from 'semantic-ui-react';
 
-class RecipientAddress extends Component {
+class RecipientAddressField extends Component {
   onChange(e) {
     const donationAmount = e.target.value;
 
@@ -25,4 +25,4 @@ class RecipientAddress extends Component {
   }
 }
 
-export default RecipientAddress;
+export default RecipientAddressField;

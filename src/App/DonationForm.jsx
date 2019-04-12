@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Form, Message } from 'semantic-ui-react';
 
-import DonationAmount from './Form/DonationAmount';
-import RecipientAddress from './Form/RecipientAddress';
+import DonationAmountField from './DonationForm/DonationAmountField';
+import RecipientAddressField from './DonationForm/RecipientAddressField';
 
-class AppForm extends Component {
+class DonationForm extends Component {
   constructor(props) {
     super(props);
     this.setState({
@@ -30,11 +30,11 @@ class AppForm extends Component {
         style={{ marginTop: 300 }}
         onSubmit={this.onSubmit}
       >
-        <DonationAmount
+        <DonationAmountField
           onStateChange={this.stateChange}
         />
         {donationAmount !== '' && (
-          <RecipientAddress
+          <RecipientAddressField
             onStateChange={this.stateChange}
           />
         )}
@@ -56,4 +56,4 @@ class AppForm extends Component {
   }
 }
 
-export default AppForm;
+export default DonationForm;
