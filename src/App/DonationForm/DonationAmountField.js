@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 
 import { Form } from 'semantic-ui-react';
 
+const decimalRegex = /^(\d*\.)?\d+$/;
+
 class DonationAmountField extends Component {
-  onChange(e) {
+  onChange = (e) => {
     const donationAmount = e.target.value;
 
-    if (donationAmount.test(/^(\d*\.)?\d+$/)) {
+    if (decimalRegex.test(donationAmount)) {
       this.props.onStateChange({ donationAmount })
     } else {
       this.props.onStateChange({
@@ -18,7 +20,6 @@ class DonationAmountField extends Component {
     return (
       <React.Fragment>
         <Form.Input
-          fluid
           label="Enter a Donation Amount"
           onChange={this.onChange}
         />
