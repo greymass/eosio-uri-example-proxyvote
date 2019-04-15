@@ -14,13 +14,12 @@ class DonationForm extends Component {
   };
   onSubmit = () => {
     this.setState({ generatingURI: true })
-    const eosioURI = ''; // generate link here
+    const eosioURI = 'eosio.to/BLABLABLA'; // generate link here
 
     this.props.onStateChange({ eosioURI })
   };
   render() {
     const { donationAmount, error, generatingURI, donationRecipient } = this.state;
-    console.log({state: this.state})
     return (
       <Form
         style={{ marginTop: 300 }}
