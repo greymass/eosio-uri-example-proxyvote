@@ -3,7 +3,7 @@ import { Segment } from 'semantic-ui-react';
 
 class URIPreviewer extends Component {
   render() {
-    const { eosioURI } = this.state;
+    const { eosioURI } = this.props;
 
     return (
       <Segment style={{ margin: 10, padding: 20 }}>

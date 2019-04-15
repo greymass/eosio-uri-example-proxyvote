@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment } from 'semantic-ui-react';
+import { Button, Segment } from 'semantic-ui-react';
 import Editor from 'react-simple-code-editor';
 import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
@@ -50,8 +50,8 @@ class URIPreviewer extends Component {
           value={`
             <link style="cdn.semantic-ui.com/button.min.css" />
             <button
-              color="${buttonColor}"
-              size="${buttonSize}"
+              color="${currentButtonColor}"
+              size="${currentButtonSize}"
               href="${eosioURI}"
             >
               Donate ${donationAmount} EOS now
@@ -59,6 +59,7 @@ class URIPreviewer extends Component {
           `}
           highlight={code => highlight(code, languages.js)}
           padding={10}
+          disabled
           style={{
             fontFamily: '"Fira code", "Fira Mono", monospace',
             fontSize: 12,
