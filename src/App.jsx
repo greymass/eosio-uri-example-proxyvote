@@ -6,6 +6,8 @@ import DonationForm from './App/DonationForm';
 import URIPreviewer from './App/URIPreviewer';
 
 class App extends Component {
+  state = {};
+
   onStateChange = (state) => {
     this.setState({ ...this.state, ...state });
   };
