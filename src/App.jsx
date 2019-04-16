@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid } from 'semantic-ui-react';
+import {Grid, Segment} from 'semantic-ui-react';
 
 import DonationButtonPreviewer from './App/DonationButtonPreviewer'
 import DonationForm from './App/DonationForm';
@@ -12,23 +12,38 @@ class App extends Component {
     this.setState({ ...this.state, ...state });
   };
   render() {
-    const { eosioURI } = this.state;
+    const { donationAmount, eosioURI } = this.state;
 
+    const segmentStyle = {
+      margin: 'auto',
+      width: 800
+    };
+
+   console.log(this.state)
     return (
-        <Grid stackable centered>
-          <DonationForm onStateChange={this.onStateChange} />
-          {eosioURI && (
-            <React.Fragment>
-              <URIPreviewer eosioURI={eosioURI} />
-              <DonationButtonPreviewer eosioURI={eosioURI} />
-            </React.Fragment>
-          )}
-
-
-          <div style={{ position: 'absolute', bottom: 15 }}>
-            Powered By Greymass
+      <Grid centered>
+        <Segment
+          aligned="center"
+          basic
+          style={segmentStyle}
+        >
+          <Segment basic style={{ marginTop: 200, minHeight: window.innerHeight - 240 }}>
+            <DonationForm onStateChange={this.onStateChange} />
+            {eosioURI && (
+              <Segment>
+                <URIPreviewer eosioURI={eosioURI} />
+                <DonationButtonPreviewer
+                  donationAmount={donationAmount}
+                  eosioURI={eosioURI}
+                />
+              </Segment>
+            )}
+          </Segment>
+          <div style={{ margin:'auto', width: 200} }>
+            <h3>Powered By Greymass</h3>
           </div>
-        </Grid>
+        </Segment>
+      </Grid>
     );
   }
 }
