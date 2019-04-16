@@ -5,10 +5,15 @@ class URIPreviewer extends Component {
   render() {
     const { eosioURI } = this.props;
 
+    const segmentStyle = {
+      margin: 10,
+      padding: 20
+    };
+
     return (
-      <Segment style={{ margin: 10, padding: 20 }}>
+      <Segment basic style={segmentStyle}>
         <h4>
-          {eosioURI}
+          Your EOSuri is {eosioURI}
         </h4>
       </Segment>
     );
