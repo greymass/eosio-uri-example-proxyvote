@@ -31,8 +31,9 @@ class App extends Component {
             <DonationForm onStateChange={this.onStateChange} />
             {eosioURI && (
               <Segment>
-                <URIPreviewer eosioURI={eosioURI} />
+                <URIPreviewer key='uri_previewer' eosioURI={eosioURI} />
                 <a
+                  key='generate_button_link'
                   onClick={() => this.setState({ generatingButton: true })}
                   style={{ cursor: 'pointer' }}
                 >
@@ -42,6 +43,7 @@ class App extends Component {
                   <DonationButtonPreviewer
                     donationAmount={donationAmount}
                     eosioURI={eosioURI}
+                    key='button_previewer'
                   />
                 )}
               </Segment>

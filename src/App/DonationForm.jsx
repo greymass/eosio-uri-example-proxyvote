@@ -3,6 +3,7 @@ import { Button, Form, Message } from 'semantic-ui-react';
 
 import DonationAmountField from './DonationForm/DonationAmountField';
 import RecipientAddressField from './DonationForm/RecipientAddressField';
+import generateURI from '../functions/generateURI';
 
 class DonationForm extends Component {
   state = {
@@ -12,13 +13,13 @@ class DonationForm extends Component {
   stateChange = (state) => {
     this.setState({ ...this.state, ...state })
   };
-  onSubmit = () => {
+  onSubmit = async () => {
     const { donationAmount } = this.state;
-    this.setState({ generatingURI: true })
-    const eosioURI = 'eosio.to/BLABLABLA'; // generate link here
 
-    this.props.onStateChange({ donationAmount, eosioURI })
-    this.setState({ generatingURI: false })
+    this.setState({ generatingURI: true });
+    const eosioURI = generateURI();
+    this.props.onStateChange({ donationAmount, eosioURI });
+    this.setState({ generatingURI: false });
   };
   render() {
     const { donationAmount, error, generatingURI, donationRecipient } = this.state;
