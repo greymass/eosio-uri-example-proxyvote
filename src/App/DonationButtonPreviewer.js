@@ -13,7 +13,12 @@ class URIPreviewer extends Component {
 
   render() {
     const { donationAmount, eosioURI } = this.props;
-    const { buttonSize: currentButtonSize, buttonColor: currentButtonColor } = this.state;
+    const {
+      buttonSize: currentButtonSize,
+      buttonColor: currentButtonColor,
+      copiedButtonCode,
+      copiedHeaderCode
+    } = this.state;
 
     let buttonStyle;
     return (
@@ -64,12 +69,34 @@ class URIPreviewer extends Component {
         <h3>
           To add this button to your website, add the following line to your page header:
         </h3>
+        <Button
+          color={copiedHeaderCode ? "grey" : "blue"}
+          content={copiedHeaderCode ? "HTML copied to clipboard" : "Copy HTML to clipboard"}
+          onClick={() => {
+            this.setState({ copiedHeaderCode: true });
+            //copy Content To Clipboard here
+            setTimeout(() => this.setState({ copiedHeaderCode: true }), 3000)
+          }}
+          size="mini"
+          style={{ margin: 20 }}
+        />
         <Segment>
           {"<link style=\"cdn.semantic-ui.com/button.min.css\" />"}
         </Segment>
         <h3>
           And add this HTML snippet in the part of your markdown where you wish the button to appear:
         </h3>
+        <Button
+          color={copiedButtonCode ? "grey" : "blue"}
+          content={copiedButtonCode ? "HTML copied to clipboard" : "Copy HTML to clipboard"}
+          onClick={() => {
+            this.setState({ copiedButtonCode: true });
+            //copy Content To Clipboard here
+            setTimeout(() => this.setState({ copiedButtonCode: true }), 3000)
+          }}
+          size="mini"
+          style={{ margin: 20 }}
+        />
         <Segment>
           <Editor
             value={`
