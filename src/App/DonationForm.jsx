@@ -44,7 +44,7 @@ class DonationForm extends Component {
         {donationRecipient !== '' && (
           <Button
             color="blue"
-            content="Generate Donation Button"
+            content="Generate URI"
           />
         )}
         {generatingURI && (

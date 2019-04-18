@@ -18,7 +18,7 @@ class RecipientAddressField extends Component {
     return (
       <React.Fragment>
         <Form.Input
-          label="Enter the recipient's username"
+          label="Enter the Recipient's Username"
           onChange={this.onChange}
         />
       </React.Fragment>

@@ -20,7 +20,7 @@ class DonationAmountField extends Component {
     return (
       <React.Fragment>
         <Form.Input
-          label="Enter a Donation Amount"
+          label="Enter a Donation Amount (in EOS)"
           onChange={this.onChange}
         />
       </React.Fragment>
