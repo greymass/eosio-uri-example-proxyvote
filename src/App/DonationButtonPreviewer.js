@@ -51,43 +51,48 @@ class URIPreviewer extends Component {
           )
         })}
         <h3 style={{ marginTop: 30 }}>
-          Preview:
+          The button will look like this:
         </h3>
         <Button
           color={currentButtonColor}
-          content={`Donate ${donationAmount} EOS now`}
+          content={`Donate ${parseFloat(donationAmount).toFixed(4)} EOS now`}
           href={eosioURI}
           size={currentButtonSize}
           style={{ margin: 20 }}
         />
+        <hr />
         <h3>
-          Add the following line to your page header:
+          To add this button to your website, add the following line to your page header:
         </h3>
-        {"<link style=\"cdn.semantic-ui.com/button.min.css\" />"}
+        <Segment>
+          {"<link style=\"cdn.semantic-ui.com/button.min.css\" />"}
+        </Segment>
         <h3>
-          Add this HTML snippet in the part of your markdown where you wish the button to appear:
+          And add this HTML snippet in the part of your markdown where you wish the button to appear:
         </h3>
-        <Editor
-          value={`
-            <a
-              href="${eosioURI}"
-              class=${`ui ${currentButtonColor} ${currentButtonSize} button`}
-              role="button"
-              style="margin: 20px;"
-            >
-              Donate ${donationAmount} EOS now
-            </a>
-          `}
-          highlight={code => highlight(code, languages.js)}
-          padding={10}
-          disabled
-          style={{
-            fontFamily: '"Fira code", "Fira Mono", monospace',
-            fontSize: 12,
-            width: 500,
-            marginLeft: 120
-          }}
-        />
+        <Segment>
+          <Editor
+            value={`
+              <a
+                href="${eosioURI}"
+                class=${`ui ${currentButtonColor} ${currentButtonSize} button`}
+                role="button"
+                style="margin: 20px;"
+              >
+                Donate ${parseFloat(donationAmount).toFixed(4)} EOS now
+              </a>
+            `}
+            highlight={code => highlight(code, languages.js)}
+            padding={10}
+            disabled
+            style={{
+              fontFamily: '"Fira code", "Fira Mono", monospace',
+              fontSize: 12,
+              width: 500,
+              marginLeft: 120
+            }}
+          />
+        </Segment>
       </Segment>
     );
   }

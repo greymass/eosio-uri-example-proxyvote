@@ -12,7 +12,7 @@ class App extends Component {
     this.setState({ ...this.state, ...state });
   };
   render() {
-    const { donationAmount, eosioURI } = this.state;
+    const { donationAmount, eosioURI, generatingButton } = this.state;
 
     const segmentStyle = {
       margin: 'auto',
@@ -32,10 +32,18 @@ class App extends Component {
             {eosioURI && (
               <Segment>
                 <URIPreviewer eosioURI={eosioURI} />
-                <DonationButtonPreviewer
-                  donationAmount={donationAmount}
-                  eosioURI={eosioURI}
-                />
+                <a
+                  onClick={() => this.setState({ generatingButton: true })}
+                  style={{ cursor: 'pointer' }}
+                >
+                  Generate a button for your website
+                </a>
+                {generatingButton && (
+                  <DonationButtonPreviewer
+                    donationAmount={donationAmount}
+                    eosioURI={eosioURI}
+                  />
+                )}
               </Segment>
             )}
           </Segment>

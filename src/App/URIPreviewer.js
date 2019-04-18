@@ -13,7 +13,7 @@ class URIPreviewer extends Component {
     return (
       <Segment basic style={segmentStyle}>
         <h4>
-          Your EOSuri is {eosioURI}
+          Your EOS URI is {eosioURI}
         </h4>
       </Segment>
     );
