@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import {Button, Segment} from 'semantic-ui-react';
 
 class URIPreviewer extends Component {
+  state = {};
+
   render() {
-    const { eosioURI, copiedURI } = this.props;
+    const { eosioURI } = this.props;
+    const { copiedURI } = this.state;
 
     const segmentStyle = {
       margin: 10,
@@ -28,7 +31,7 @@ class URIPreviewer extends Component {
           onClick={() => {
             this.setState({ copiedURI: true });
             //copy Content To Clipboard here
-            setTimeout(() => this.setState({ copiedURI: true }), 3000)
+            setTimeout(() => this.setState({ copiedURI: false }), 3000)
           }}
           size="mini"
           style={{ margin: 20 }}

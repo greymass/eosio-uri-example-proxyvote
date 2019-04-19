@@ -16,10 +16,8 @@ class App extends Component {
 
     const segmentStyle = {
       margin: 'auto',
-      width: 800
     };
 
-   console.log(this.state)
     return (
       <Grid centered>
         <Segment
@@ -32,19 +30,24 @@ class App extends Component {
             {eosioURI && (
               <Segment>
                 <URIPreviewer key='uri_previewer' eosioURI={eosioURI} />
-                <a
-                  key='generate_button_link'
-                  onClick={() => this.setState({ generatingButton: true })}
-                  style={{ cursor: 'pointer' }}
-                >
-                  Generate a button for your website
-                </a>
+                {!generatingButton && (
+                  <a
+                    key='generate_button_link'
+                    onClick={() => this.setState({ generatingButton: true })}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    Generate a button for your website
+                  </a>
+                )}
                 {generatingButton && (
-                  <DonationButtonPreviewer
-                    donationAmount={donationAmount}
-                    eosioURI={eosioURI}
-                    key='button_previewer'
-                  />
+                  <React.Fragment>
+                    <hr />
+                    <DonationButtonPreviewer
+                      donationAmount={donationAmount}
+                      eosioURI={eosioURI}
+                      key='button_previewer'
+                    />
+                  </React.Fragment>
                 )}
               </Segment>
             )}
