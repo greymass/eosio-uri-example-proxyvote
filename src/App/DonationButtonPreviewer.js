@@ -75,13 +75,13 @@ class URIPreviewer extends Component {
           onClick={() => {
             this.setState({ copiedHeaderCode: true });
             //copy Content To Clipboard here
-            setTimeout(() => this.setState({ copiedHeaderCode: true }), 3000)
+            setTimeout(() => this.setState({ copiedHeaderCode: false }), 3000)
           }}
           size="mini"
           style={{ margin: 20 }}
         />
         <Segment>
-          {"<link style=\"cdn.semantic-ui.com/button.min.css\" />"}
+          {"<link style='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/button.min.css' />"}
         </Segment>
         <h3>
           And add this HTML snippet in the part of your markdown where you wish the button to appear:
@@ -92,7 +92,7 @@ class URIPreviewer extends Component {
           onClick={() => {
             this.setState({ copiedButtonCode: true });
             //copy Content To Clipboard here
-            setTimeout(() => this.setState({ copiedButtonCode: true }), 3000)
+            setTimeout(() => this.setState({ copiedButtonCode: false }), 3000)
           }}
           size="mini"
           style={{ margin: 20 }}
