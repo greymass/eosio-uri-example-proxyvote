@@ -1,15 +1,13 @@
-const util = require('util');
+const fetch = require('node-fetch');
+const textEncoding = require('text-encoding');
 const zlib = require('zlib');
-const eosjs = require('eosjs');
-
+const { JsonRpc } = require('eosjs');
 const { SigningRequest } = require("eosio-uri");
 
-const textEncoder = new util.TextEncoder();
-const textDecoder = new util.TextDecoder();
+const textDecoder = new textEncoding.TextDecoder();
+const textEncoder = new textEncoding.TextEncoder();
 
-const rpc = Eos({
-  httpEndpoint: 'https://eos.greymass.com'
-});
+const rpc = new JsonRpc('https://eos.greymass.com', { fetch });
 
 const opts = {
   // string encoder
@@ -33,7 +31,7 @@ const opts = {
   }
 };
 
-export default async function gernerateURI() {
+export default async function gernerateURI(donationAmount, donationRecipient) {
   let req = await SigningRequest.create({
     callback: 'https://dapp.greymass.com',
     actions: [{
@@ -42,7 +40,7 @@ export default async function gernerateURI() {
       authorization: [{ actor: '1111111111', permission: 'active' }],
       data: {
         from: '11111111111',
-        to: donarionRecipient,
+        to: donationRecipient,
         quantity: donationAmount,
         memo: 'donation',
       }

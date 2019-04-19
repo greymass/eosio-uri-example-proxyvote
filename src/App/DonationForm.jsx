@@ -14,10 +14,10 @@ class DonationForm extends Component {
     this.setState({ ...this.state, ...state })
   };
   onSubmit = async () => {
-    const { donationAmount } = this.state;
+    const { donationAmount, donationRecipient } = this.state;
 
     this.setState({ generatingURI: true });
-    const eosioURI = generateURI();
+    const eosioURI = await generateURI(donationAmount, donationRecipient);
     this.props.onStateChange({ donationAmount, eosioURI });
     this.setState({ generatingURI: false });
   };
