@@ -2,16 +2,21 @@ import React, { Component } from 'react';
 
 import { Form } from 'semantic-ui-react';
 
-const addressRegex = /^[a-z12345.]{1,12}$/g;
+const addressRegex = /^[a-z12345.]{1,12}$/;
 
-class RecipientAddressField extends Component {
+class DonationRecipientField extends Component {
   onChange = (e) => {
     const donationRecipient = e.target.value;
+
+    this.props.setError('donationRecipient', undefined);
 
     if (addressRegex.test(donationRecipient)) {
       this.props.onStateChange({ donationRecipient })
     } else {
-      this.props.onStateChange({ error: 'The recipient username is invalid, must be a decimal a string of 1-12 characters.' });
+      this.props.setError(
+        'donationRecipient',
+        'The recipient username is invalid, it must be a string of 1-12 characters.'
+      );
     }
   };
   render() {
@@ -26,4 +31,4 @@ class RecipientAddressField extends Component {
   }
 }
 
-export default RecipientAddressField;
+export default DonationRecipientField;

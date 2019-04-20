@@ -15,22 +15,32 @@ class URIPreviewer extends Component {
 
     return (
       <Segment basic style={segmentStyle}>
-        <h4>
+        <h4 key="header">
           Your eosio uri:
         </h4>
         <a
+          href={`https://eosio.to/${eosioURI.split('eosio:')[1]}`}
+          key="link"
           style={{ marginBottom: 20 }}
-          href={`https://eosio.to/${eosioURI.split('eosio:')}`}
+          target="_blank"
         >
           {eosioURI}
         </a>
-        <br />
+        <br key="line"/>
+        <textarea
+          defaultValue={eosioURI}
+          id="eosUriField"
+          key="eosUriField"
+          style={{ position: 'absolute', bottom: 10000 }}
+        />
         <Button
           color={copiedURI ? "grey" : "blue"}
           content={copiedURI ? "HTML copied to clipboard" : "Copy HTML to clipboard"}
+          key="copyButton"
           onClick={() => {
             this.setState({ copiedURI: true });
-            //copy Content To Clipboard here
+            document.getElementById("eosUriField").select();
+            document.execCommand("copy");
             setTimeout(() => this.setState({ copiedURI: false }), 3000)
           }}
           size="mini"
