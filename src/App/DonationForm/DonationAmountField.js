@@ -7,13 +7,14 @@ const decimalRegex = /^(\d*\.)?\d+$/;
 class DonationAmountField extends Component {
   onChange = (e) => {
     const donationAmount = e.target.value;
-
+    this.props.setError('donationAmount', undefined);
     if (decimalRegex.test(donationAmount)) {
       this.props.onStateChange({ donationAmount })
     } else {
-      this.props.onStateChange({
-        error: 'The donation amount, must be a decimal number with, eg: "1.0000"'
-      });
+      this.props.setError(
+        'donationAmount',
+        'The donation amount is invalid, it must be a decimal number with up to 4 decimals, eg: "1.0000".'
+      )
     }
   };
   render() {

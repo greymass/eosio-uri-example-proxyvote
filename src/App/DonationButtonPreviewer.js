@@ -21,6 +21,18 @@ class URIPreviewer extends Component {
     } = this.state;
 
     let buttonStyle;
+
+    const addToHeader = "<link style='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/button.min.css' />";
+    const addToMarkdown = `
+      <a
+        href="${eosioURI}"
+        class="${`ui ${currentButtonColor} ${currentButtonSize} button`}"
+        role="button"
+        style="margin: 20px;"
+      >
+        Donate ${parseFloat(donationAmount).toFixed(4)} EOS now
+      </a>
+    `;
     return (
       <Segment basic style={{ margin: 10, padding: 20 }}>
         {buttonSizes.map(buttonSize => {
@@ -69,46 +81,51 @@ class URIPreviewer extends Component {
         <h3>
           To add this button to your website, add the following line to your page header:
         </h3>
-        <Button
-          color={copiedHeaderCode ? "grey" : "blue"}
-          content={copiedHeaderCode ? "HTML copied to clipboard" : "Copy HTML to clipboard"}
-          onClick={() => {
-            this.setState({ copiedHeaderCode: true });
-            //copy Content To Clipboard here
-            setTimeout(() => this.setState({ copiedHeaderCode: false }), 3000)
-          }}
-          size="mini"
-          style={{ margin: 20 }}
-        />
         <Segment>
-          {"<link style='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/button.min.css' />"}
+          <textarea
+            defaultValue={addToHeader}
+            id="addToHeaderField"
+            style={{ position: 'absolute', bottom: 10000 }}
+          />
+          <Button
+            floated="right"
+            color={copiedHeaderCode ? "grey" : "blue"}
+            content={copiedHeaderCode ? "HTML copied to clipboard" : "Copy HTML to clipboard"}
+            onClick={() => {
+              this.setState({ copiedHeaderCode: true });
+              document.getElementById("addToHeaderField").select();
+              document.execCommand("copy");
+              setTimeout(() => this.setState({ copiedHeaderCode: false }), 3000)
+            }}
+            size="mini"
+            style={{ marginTop: -3 }}
+          />
+          {addToHeader}
         </Segment>
         <h3>
           And add this HTML snippet in the part of your markdown where you wish the button to appear:
         </h3>
-        <Button
-          color={copiedButtonCode ? "grey" : "blue"}
-          content={copiedButtonCode ? "HTML copied to clipboard" : "Copy HTML to clipboard"}
-          onClick={() => {
-            this.setState({ copiedButtonCode: true });
-            //copy Content To Clipboard here
-            setTimeout(() => this.setState({ copiedButtonCode: false }), 3000)
-          }}
-          size="mini"
-          style={{ margin: 20 }}
-        />
         <Segment>
+          <textarea
+            defaultValue={addToMarkdown}
+            id="addToMarkdownField"
+            style={{ position: 'absolute', bottom: 10000 }}
+          />
+          <Button
+            color={copiedButtonCode ? "grey" : "blue"}
+            content={copiedButtonCode ? "HTML copied to clipboard" : "Copy HTML to clipboard"}
+            floated="right"
+            onClick={() => {
+              this.setState({ copiedButtonCode: true });
+              document.getElementById("addToMarkdownField").select();
+              document.execCommand("copy");
+              setTimeout(() => this.setState({ copiedButtonCode: false }), 3000)
+            }}
+            size="mini"
+            style={{ margin: -3 }}
+          />
           <Editor
-            value={`
-              <a
-                href="${eosioURI}"
-                class=${`ui ${currentButtonColor} ${currentButtonSize} button`}
-                role="button"
-                style="margin: 20px;"
-              >
-                Donate ${parseFloat(donationAmount).toFixed(4)} EOS now
-              </a>
-            `}
+            value={addToMarkdown}
             highlight={code => highlight(code, languages.js)}
             padding={10}
             disabled

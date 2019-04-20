@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Grid, Segment} from 'semantic-ui-react';
+import { Grid, Segment, Message } from 'semantic-ui-react';
 
 import DonationButtonPreviewer from './App/DonationButtonPreviewer'
 import DonationForm from './App/DonationForm';
@@ -25,8 +25,18 @@ class App extends Component {
           basic
           style={segmentStyle}
         >
-          <Segment basic style={{ marginTop: 200, minHeight: window.innerHeight - 240 }}>
-            <DonationForm onStateChange={this.onStateChange} />
+          <Segment basic style={{ marginTop: 100, minHeight: window.innerHeight - 140 }}>
+            <Segment basic style={{ width: 400 }}>
+              <Message
+                success
+                style={{ marginBottom: 100 }}
+                content="
+                  This is an EOSIO uri example project created by Greymass to allow any website owner to generate
+                  a donation link and/or button. To start using this tool simply fill up the form below.
+                "
+              />
+              <DonationForm onStateChange={this.onStateChange} />
+            </Segment>
             {eosioURI && (
               <Segment>
                 <URIPreviewer key='uri_previewer' eosioURI={eosioURI} />
