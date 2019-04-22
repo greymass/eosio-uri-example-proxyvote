@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Grid, Segment, Message } from 'semantic-ui-react';
 
-import DonationButtonPreviewer from './App/DonationButtonPreviewer'
-import DonationForm from './App/DonationForm';
+import DonationButtonPreviewer from './App/ProxyButtonPreviewer'
+import ProxyForm from './App/ProxyForm';
 import URIPreviewer from './App/URIPreviewer';
 
 class App extends Component {
@@ -35,7 +35,7 @@ class App extends Component {
                   a donation link and/or button. To start using this tool simply fill up the form below.
                 "
               />
-              <DonationForm onStateChange={this.onStateChange} />
+              <ProxyForm onStateChange={this.onStateChange} />
             </Segment>
             {eosioURI && (
               <Segment>
