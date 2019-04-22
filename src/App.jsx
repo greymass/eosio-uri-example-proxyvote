@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Segment, Message } from 'semantic-ui-react';
 
-import DonationButtonPreviewer from './App/ProxyButtonPreviewer'
+import ProxyButtonPreviewer from './App/ProxyButtonPreviewer'
 import ProxyForm from './App/ProxyForm';
 import URIPreviewer from './App/URIPreviewer';
 
@@ -12,7 +12,7 @@ class App extends Component {
     this.setState({ ...this.state, ...state });
   };
   render() {
-    const { donationAmount, eosioURI, generatingButton } = this.state;
+    const { proxyAccount, eosioURI, generatingButton } = this.state;
 
     const segmentStyle = {
       margin: 'auto',
@@ -26,13 +26,13 @@ class App extends Component {
           style={segmentStyle}
         >
           <Segment basic style={{ marginTop: 100, minHeight: window.innerHeight - 140 }}>
-            <Segment basic style={{ width: 400 }}>
+            <Segment basic style={{ width: 400, margin: 'auto' }}>
               <Message
                 success
                 style={{ marginBottom: 100 }}
                 content="
                   This is an EOSIO uri example project created by Greymass to allow any website owner to generate
-                  a donation link and/or button. To start using this tool simply fill up the form below.
+                  a 'proxy your votes' link and/or button. To start using this tool simply fill up the form below.
                 "
               />
               <ProxyForm onStateChange={this.onStateChange} />
@@ -52,8 +52,8 @@ class App extends Component {
                 {generatingButton && (
                   <React.Fragment>
                     <hr />
-                    <DonationButtonPreviewer
-                      donationAmount={donationAmount}
+                    <ProxyButtonPreviewer
+                      proxyAccount={proxyAccount}
                       eosioURI={eosioURI}
                       key='button_previewer'
                     />

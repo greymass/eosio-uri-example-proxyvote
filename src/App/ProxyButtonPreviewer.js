@@ -12,7 +12,7 @@ class URIPreviewer extends Component {
   state = { buttonSize: 'medium', buttonColor: 'blue' };
 
   render() {
-    const { donationAmount, eosioURI } = this.props;
+    const { proxyAccount, eosioURI } = this.props;
     const {
       buttonSize: currentButtonSize,
       buttonColor: currentButtonColor,
@@ -22,15 +22,16 @@ class URIPreviewer extends Component {
 
     let buttonStyle;
 
-    const addToHeader = "<link style='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/button.min.css' />";
+    const eosioToLink = `https://eosio.to/${eosioURI.split('eosio:')[1]}`;
+    const addToHeader = "<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/button.min.css' />";
     const addToMarkdown = `
       <a
-        href="${eosioURI}"
         class="${`ui ${currentButtonColor} ${currentButtonSize} button`}"
+        href="${eosioToLink}"
         role="button"
         style="margin: 20px;"
       >
-        Donate ${parseFloat(donationAmount).toFixed(4)} EOS now
+        Proxy votes to ${proxyAccount}
       </a>
     `;
     return (
@@ -45,6 +46,7 @@ class URIPreviewer extends Component {
             <Button
               basic
               content={buttonSize}
+              key={`${buttonSize}-size-button`}
               onClick={() => this.setState({ buttonSize })}
               style={buttonStyle}
             />
@@ -62,6 +64,7 @@ class URIPreviewer extends Component {
               basic
               color={buttonColor}
               content={buttonColor}
+              key={`${buttonColor}-color-button`}
               onClick={() => this.setState({ buttonColor })}
               style={buttonStyle}
             />
@@ -72,25 +75,27 @@ class URIPreviewer extends Component {
         </h3>
         <Button
           color={currentButtonColor}
-          content={`Donate ${parseFloat(donationAmount).toFixed(4)} EOS now`}
-          href={eosioURI}
+          content={`Proxy your Votes to ${proxyAccount}`}
+          key="example-button"
           size={currentButtonSize}
           style={{ margin: 20 }}
         />
-        <hr />
-        <h3>
+        <hr key="hr" />
+        <h3 key="headerHeader">
           To add this button to your website, add the following line to your page header:
         </h3>
         <Segment>
           <textarea
             defaultValue={addToHeader}
             id="addToHeaderField"
+            key="textareaHeader"
             style={{ position: 'absolute', bottom: 10000 }}
           />
           <Button
             floated="right"
             color={copiedHeaderCode ? "grey" : "blue"}
-            content={copiedHeaderCode ? "HTML copied to clipboard" : "Copy HTML to clipboard"}
+            content={copiedHeaderCode ? "Copied" : "Copy"}
+            key="copyHeaderButton"
             onClick={() => {
               this.setState({ copiedHeaderCode: true });
               document.getElementById("addToHeaderField").select();
@@ -102,19 +107,21 @@ class URIPreviewer extends Component {
           />
           {addToHeader}
         </Segment>
-        <h3>
+        <h3 key="headerBody">
           And add this HTML snippet in the part of your markdown where you wish the button to appear:
         </h3>
         <Segment>
           <textarea
             defaultValue={addToMarkdown}
+            key="textAreaBody"
             id="addToMarkdownField"
             style={{ position: 'absolute', bottom: 10000 }}
           />
           <Button
             color={copiedButtonCode ? "grey" : "blue"}
-            content={copiedButtonCode ? "HTML copied to clipboard" : "Copy HTML to clipboard"}
+            content={copiedButtonCode ? "Copied" : "Copy"}
             floated="right"
+            key="copyBodyButton"
             onClick={() => {
               this.setState({ copiedButtonCode: true });
               document.getElementById("addToMarkdownField").select();
@@ -125,16 +132,17 @@ class URIPreviewer extends Component {
             style={{ margin: -3 }}
           />
           <Editor
-            value={addToMarkdown}
-            highlight={code => highlight(code, languages.js)}
-            padding={10}
             disabled
+            highlight={code => highlight(code, languages.js)}
+            key="editor"
+            padding={10}
             style={{
               fontFamily: '"Fira code", "Fira Mono", monospace',
               fontSize: 12,
               width: 500,
               marginLeft: 120
             }}
+            value={addToMarkdown}
           />
         </Segment>
       </Segment>

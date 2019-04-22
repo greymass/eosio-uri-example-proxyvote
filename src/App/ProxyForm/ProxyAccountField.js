@@ -6,16 +6,16 @@ const addressRegex = /^[a-z12345.]{1,12}$/;
 
 class ProxyAccountField extends Component {
   onChange = (e) => {
-    const donationRecipient = e.target.value;
+    const proxyAccount = e.target.value;
 
-    this.props.setError('donationRecipient', undefined);
+    this.props.setError('proxyAccount', undefined);
 
-    if (addressRegex.test(donationRecipient)) {
-      this.props.onStateChange({ donationRecipient })
+    if (addressRegex.test(proxyAccount)) {
+      this.props.onStateChange({ proxyAccount })
     } else {
       this.props.setError(
-        'donationRecipient',
-        'The recipient username is invalid, it must be a string of 1-12 characters.'
+        'proxyAccount',
+        'The proxy account name is invalid, it must be a string of 1-12 characters.'
       );
     }
   };
@@ -23,7 +23,7 @@ class ProxyAccountField extends Component {
     return (
       <React.Fragment>
         <Form.Input
-          label="Enter the Recipient's Username"
+          label="Enter the Account Name of the Proxy"
           onChange={this.onChange}
         />
       </React.Fragment>

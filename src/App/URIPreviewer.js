@@ -35,7 +35,7 @@ class URIPreviewer extends Component {
         />
         <Button
           color={copiedURI ? "grey" : "blue"}
-          content={copiedURI ? "HTML copied to clipboard" : "Copy HTML to clipboard"}
+          content={copiedURI ? "Copied to clipboard" : "Copy to clipboard"}
           key="copyButton"
           onClick={() => {
             this.setState({ copiedURI: true });
