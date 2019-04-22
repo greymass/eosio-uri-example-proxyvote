@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { Button, Form, Message } from 'semantic-ui-react';
 
-import DonationAmountField from './DonationForm/DonationAmountField';
-import DonationRecipientField from './DonationForm/DonationRecipientField';
+import ProxyAccountField from './ProxyForm/ProxyAccountField';
 import generateURI from '../functions/generateURI';
 
-class DonationForm extends Component {
+class ProxyForm extends Component {
   state = {
-    donationAmount: '',
-    donationRecipient: '',
+    proxyAccount: '',
     errors: {}
   };
   stateChange = (state) => {
@@ -21,15 +19,15 @@ class DonationForm extends Component {
     this.setState({ errors })
   };
   onSubmit = async () => {
-    const { donationAmount, donationRecipient } = this.state;
+    const { proxyAccount } = this.state;
 
     this.setState({ generatingURI: true });
-    const eosioURI = await generateURI(donationAmount, donationRecipient);
-    this.props.onStateChange({ donationAmount, eosioURI });
+    const eosioURI = await generateURI(proxyAccount);
+    this.props.onStateChange({ eosioURI });
     this.setState({ generatingURI: false });
   };
   render() {
-    const { donationAmount, errors, generatingURI, donationRecipient } = this.state;
+    const { errors, generatingURI } = this.state;
     const hasErrors = !!Object.values(errors).some(value => ![undefined, null].includes(value) );
     return (
       <Form
@@ -37,16 +35,10 @@ class DonationForm extends Component {
         onSubmit={this.onSubmit}
         style={{ marginTop: 300, width: 300, margin: 'auto' }}
       >
-        <DonationAmountField
+        <ProxyAccountField
           setError={this.setError}
           onStateChange={this.stateChange}
         />
-        {donationAmount !== '' && (
-          <DonationRecipientField
-            setError={this.setError}
-            onStateChange={this.stateChange}
-          />
-        )}
         {Object.keys(errors).map(key => (
           <Message
             content={errors[key]}
@@ -54,7 +46,7 @@ class DonationForm extends Component {
             key={key}
           />
         ))}
-        {donationRecipient !== '' && (
+        {proxyAccount !== '' && (
           <Button
             color="blue"
             content="Generate URI"
@@ -69,4 +61,4 @@ class DonationForm extends Component {
   }
 }
 
-export default DonationForm;
+export default ProxyForm;

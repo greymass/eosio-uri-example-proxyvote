@@ -31,7 +31,7 @@ const opts = {
   }
 };
 
-export default async function gernerateURI(donationAmount, donationRecipient) {
+export default async function generateURI(donationAmount, donationRecipient) {
   let req = await SigningRequest.create({
     callback: 'https://dapp.greymass.com',
     actions: [{

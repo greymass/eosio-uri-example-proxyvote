@@ -4,7 +4,7 @@ import { Form } from 'semantic-ui-react';
 
 const addressRegex = /^[a-z12345.]{1,12}$/;
 
-class DonationRecipientField extends Component {
+class ProxyAccountField extends Component {
   onChange = (e) => {
     const donationRecipient = e.target.value;
 
@@ -31,4 +31,4 @@ class DonationRecipientField extends Component {
   }
 }
 
-export default DonationRecipientField;
+export default ProxyAccountField;
