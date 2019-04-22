@@ -31,18 +31,17 @@ const opts = {
   }
 };
 
-export default async function generateURI(donationAmount, donationRecipient) {
+export default async function generateURI(proxyAccount) {
   let req = await SigningRequest.create({
     callback: 'https://dapp.greymass.com',
     actions: [{
-      account: 'eosio.token',
-      name: 'transfer',
+      account: 'eosio',
+      name: 'voteproducer',
       authorization: [{ actor: '1111111111', permission: 'active' }],
       data: {
-        from: '11111111111',
-        to: donationRecipient,
-        quantity: donationAmount,
-        memo: 'donation',
+        voter: '11111111111',
+        producers: [],
+        proxy: proxyAccount
       }
     }]
   }, opts);

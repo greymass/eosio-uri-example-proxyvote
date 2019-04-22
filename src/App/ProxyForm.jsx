@@ -20,15 +20,15 @@ class ProxyForm extends Component {
   };
   onSubmit = async () => {
     const { proxyAccount } = this.state;
-
     this.setState({ generatingURI: true });
     const eosioURI = await generateURI(proxyAccount);
-    this.props.onStateChange({ eosioURI });
+    this.props.onStateChange({ eosioURI, proxyAccount });
     this.setState({ generatingURI: false });
   };
   render() {
-    const { errors, generatingURI } = this.state;
-    const hasErrors = !!Object.values(errors).some(value => ![undefined, null].includes(value) );
+    const { errors, generatingURI, proxyAccount } = this.state;
+    const hasErrors = !!Object.values(errors).some(value => undefined !== value);
+
     return (
       <Form
         error={hasErrors}
