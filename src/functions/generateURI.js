@@ -37,9 +37,9 @@ export default async function generateURI(proxyAccount) {
     actions: [{
       account: 'eosio',
       name: 'voteproducer',
-      authorization: [{ actor: '1111111111', permission: 'active' }],
+      authorization: [{ actor: '...........1', permission: 'active' }],
       data: {
-        voter: '11111111111',
+        voter: '...........1',
         producers: [],
         proxy: proxyAccount
       }
