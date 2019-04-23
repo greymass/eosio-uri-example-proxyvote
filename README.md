@@ -1,1 +1,3 @@
-# eosio-uri-example-proxyvote
+Run:
+1. `npm install`
+1. `npm start`
