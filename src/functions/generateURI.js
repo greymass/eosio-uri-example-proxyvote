@@ -33,13 +33,12 @@ const opts = {
 
 export default async function generateURI(proxyAccount) {
   let req = await SigningRequest.create({
-    callback: 'https://dapp.greymass.com',
     actions: [{
       account: 'eosio',
       name: 'voteproducer',
-      authorization: [{ actor: '...........1', permission: 'active' }],
+      authorization: [{ actor: '............1', permission: '............1' }],
       data: {
-        voter: '...........1',
+        voter: '............1',
         producers: [],
         proxy: proxyAccount
       }
